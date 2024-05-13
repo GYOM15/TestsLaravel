@@ -43,14 +43,14 @@
                 <form action="{{ route('property.contact', $property)}} " method="POST" class="vstack gap-3">
                         @csrf
                     <div class="row">
-                            @include('shared.input', ['class' => 'col','label' => 'Prénom', 'name' => 'firstname', 'value' => 'John'])
-                            @include('shared.input', ['class' => 'col','label' => 'Nom', 'name' => 'lastname', 'value' => 'Doe'])
+                        <x-input class="col" name="firstname" label="Prénom" value="John"/>
+                        <x-input class="col" name="lastname" label="Nom" value="Doe"/>
                     </div>
                     <div class="row">
-                        @include('shared.input', ['class' => 'col','label' => 'Téléphone', 'name' => 'phone', 'value' => '22 33 345 55'])
-                        @include('shared.input', ['type' => 'email', 'class' => 'col','label' => 'Email', 'name' => 'email', 'value' => 'John@doe.com'])
+                        <x-input class="col" name="phone" label="Téléphone" value="22 33 345 55"/>
+                        <x-input class="col" name="email" type='email' label="Email" value="John@doe.com"/>
                     </div>
-                    @include('shared.input', ['type' => 'textarea', 'class' => 'col','label' => 'Votre message', 'name' => 'message', 'value' => 'Voici mon message'])
+                    <x-input class="col" name="message" type='textarea' label="Votre message" value="Voici mon message"/>
                     <div>
                         <button class="btn btn-primary">
                             Nous contacter

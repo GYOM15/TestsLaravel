@@ -20,7 +20,7 @@
     <div class="row">
         @forelse ( $properties as $property )
             <div class="col-3 mb-5">
-                @include('property.card')
+                <x-propertycard :property="$property"/>
             </div>
         @empty
         <div class="col mb-5">
