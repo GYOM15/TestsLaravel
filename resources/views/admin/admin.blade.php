@@ -54,7 +54,7 @@
                 <form action="{{route('logout')}}" method="POST" class="nav-item">
                   @method('delete')
                   @csrf
-                  <button class="btn btn-primary">Se déconnecter</button>
+                  <button class="btn btn-primary nav-link">Se déconnecter</button>
                 </form>
               @endauth
               @guest

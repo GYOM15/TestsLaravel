@@ -39,7 +39,7 @@ Route::post('/biens/{property}/contact', [App\Http\Controllers\PropertyControlle
 // Les routes pour l'authenfication 
 Route::get('/login', [AuthController::class, 'login'])->middleware('guest')->name('login');
 Route::post('/login', [AuthController::class, 'doLogin']);
-Route::delete('/logout', [AuthController::class, 'logout'])->middleware('guest')->name('logout');
+Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/images/{path}', [ImageController::class, 'show'])->where('path', '.*');
 
