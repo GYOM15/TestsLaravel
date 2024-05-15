@@ -52,7 +52,9 @@ class PropertyController extends Controller
     {
         $property = Property::create($request->validated());
         $property->options()->sync($request->validated('options'));
-        $property->attachFiles($request->validated('pictures'));
+        if($request->validated('pictures')){
+            $property->attachFiles($request->validated('pictures'));
+        }
         return to_route('admin.property.index') ->with('succes', 'Le bien a bien été crée');
     }
 

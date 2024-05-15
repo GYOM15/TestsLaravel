@@ -22,7 +22,7 @@ class PropertyController extends Controller
          * On peut faire de l'igerloading en passant la fonction with(options) à query pour précharger ce que l'on veut
          * Cela nous épargne de faire trop de réquêtes
          */ 
-        $query = Property::query()->with('pictures')->orderBy('created_at', 'desc');
+        $query = Property::query()->with('pictures')->recent()->available();
         // On vérifie si la réquête contien le prix
         if($price = $request->validated('price')){
             $query = $query->where('price', '<=', $price);
