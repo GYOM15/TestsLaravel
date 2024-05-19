@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Admin\OptionController;
 use App\Http\Controllers\Admin\PictureController;
-use App\Http\Controllers\Admin\PropertyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +19,6 @@ use App\Http\Controllers\Admin\PropertyController;
 |
 */
 
-// Définition des regex
 $idRegex = '[0-9]+';
 $slugRegex = '[0-9a-z\-]+';
 
@@ -36,10 +35,10 @@ Route::post('/biens/{property}/contact', [App\Http\Controllers\PropertyControlle
     'property' =>$idRegex 
 ]);
 
-// Les routes pour l'authenfication 
-Route::get('/login', [AuthController::class, 'login'])->middleware('guest')->name('login');
-Route::post('/login', [AuthController::class, 'doLogin']);
-Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/images/{path}', [ImageController::class, 'show'])->where('path', '.*');
 
@@ -54,3 +53,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () us
         'picture' => $idRegex,
     ]);
 });
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';

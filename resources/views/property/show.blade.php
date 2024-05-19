@@ -1,6 +1,6 @@
 @extends('base')
 
-@section('titel', $property-> title)
+@section('title', $property-> title)
 
 @section('content')
 

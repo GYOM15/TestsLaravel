@@ -9,7 +9,7 @@
         <input type="number" placeholder="Surface minimum" class="form-control" name="surface" value="{{ $input['surface'] ?? ' ' }}">
         <input type="number" placeholder="Nombre de pièce min" class="form-control" name="rooms" value="{{ $input['rooms'] ?? ' ' }}">
         <input type="number" placeholder="Budget max" class="form-control" name="price" value="{{ $input['price'] ?? ' ' }}">
-        <input placeholder="Mot clef" class="form-control" name="title" value="{{ $input['title'] ?? ' ' }}">
+        <input type="text" placeholder="Mot clef" class="form-control" name="title" value="{{ $input['title'] ?? ' ' }}">
         <button class="btn btn-primary btn-sm flex-grow-0">
             Rechercher
         </button>
