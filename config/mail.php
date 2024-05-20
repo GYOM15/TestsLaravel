@@ -43,7 +43,10 @@ return [
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
-
+            'from' => [
+                'address' => env('MAIL_FROM_ADDRESS', 'example@example.com'),
+                'name' => env('MAIL_FROM_NAME', 'Example'),
+            ],
             'auth_mode' => null,
             'verify_peer' => true,
         ],

@@ -11,75 +11,61 @@
     <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
     <script src="https://unpkg.com/htmx.org@1.9.12"></script>
     <style>
-      @layer reset{
-          button{
+      @layer reset {
+          button {
               all: unset;
           }
       }
-      .htmx-indicator{
+      .htmx-indicator {
         display: none;
       }
-      .htmx-request .htmx-indicator{
+      .htmx-request .htmx-indicator {
         display: inline-block;
       }
-     
-  </style>
-
+    </style>
 </head>
 <body>
-
     <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/">Agence</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          @php
-            // On recupère la route afin de pourvoir utiliser la classe active tout en bas
-            $route = request()->route()->getName()
-          @endphp
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a @class(['nav-link', 'active' => Str::contains($route, 'property.') ]) href="{{route('admin.property.index')}} ">Gerer les biens</a>
-              </li>
-              <li class="nav-item">
-                <a @class(['nav-link', 'active' => Str::contains($route, 'option.') ]) href="{{route('admin.option.index')}}">Gerer les options</a>
-              </li>
-            </ul>
-
-            {{--Le boutton de déconnexion---}}
-            <div class="navbar-nav ms-auto">
-              @auth
-                <form action="{{route('logout')}}" method="POST" class="nav-item">
-                  @method('delete')
-                  @csrf
-                  <button class="btn btn-primary nav-link">Se déconnecter</button>
-                </form>
-              @endauth
-              @guest
-                <div class="nav-item">
-                  <a href="{{route('login')}} " class="nav-link">Se connecter</a>
+            <a class="navbar-brand" href="/">Agence</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            @php
+                $route = request()->route()->getName();
+            @endphp
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a @class(['nav-link', 'active' => Str::contains($route, 'property.') ]) href="{{ route('admin.property.index') }}">Gérer les biens</a>
+                    </li>
+                    <li class="nav-item">
+                        <a @class(['nav-link', 'active' => Str::contains($route, 'option.') ]) href="{{ route('admin.option.index') }}">Gérer les options</a>
+                    </li>
+                </ul>
+                <div class="navbar-nav ms-auto">
+                    @auth
+                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('POST')
+                            <button class="btn btn-link nav-link" style="border: none;">Se déconnecter</button>
+                        </form>
+                    @endauth
+                    @guest
+                        <a href="{{ route('login') }}" class="nav-link">Se connecter</a>
+                    @endguest
                 </div>
-              @endguest
-              
             </div>
-          </div>
         </div>
-      </nav>
+    </nav>
 
     <div class="container mt-5">
-      
         @include('shared.flash')
-
         @yield('content')
     </div>
-    
 
     <script>
-      //Pour customiser la partie de selection des options
-      new TomSelect('select[multiple]', {plugins: {remove_button:{title: 'Supprimer'} }} )
+      new TomSelect('select[multiple]', { plugins: { remove_button: { title: 'Supprimer' } } });
     </script>
-
 </body>
 </html>
