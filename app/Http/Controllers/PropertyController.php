@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Property;
 use Illuminate\View\View;
 use App\Mail\PropertyContactMail;
+use App\Events\ContactRequestEvent;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Notification;
 use App\Http\Requests\PropertyContactRequest;
 use App\Http\Requests\SearchPropertiesRequest;
+use App\Notifications\ContactRequestNotification;
 
 
 class PropertyController extends Controller
@@ -62,7 +66,8 @@ class PropertyController extends Controller
     }
 
     public function contact(Property $property, PropertyContactRequest $request){
-        Mail::send(new PropertyContactMail($property, $request->validated()));
+        //event(new ContactRequestEvent($property, $request->validated()));
+        Notification::route('Mail', 'johdoe@admin.com')->notify(new ContactRequestNotification($property, $request->validated()));
         return back()->with('success', 'Votre demande de contact a bien été envoyé');
     }
 

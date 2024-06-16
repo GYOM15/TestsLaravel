@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card carte">
     @if ($property->getPicture())
         <img src="{{$property->getPicture()->getImageUrl(360, 230)}} " alt="" class="w-100">
     @else

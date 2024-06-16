@@ -2,6 +2,8 @@
 
 @section('content')
 
+    <x-weather></x-weather>
+
     <div class="bg-light mb-5 p-5 text-center">
         <div class="container">
             <h1>Agence Immo</h1>
