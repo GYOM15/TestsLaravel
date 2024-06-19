@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <h4>Intéressé par ce bien ?</h4>
+                <h4>{{__('Interested in the property :title ?', ['title' => $property->title])}}</h4>
                 {{-- On pourrait bien gérer de telle sorte que s'il existe le message flash, on fait disparaitre le formulaire --}}
                 @include('shared.flash')
 
