@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
 use App\Models\Option;
 use App\Models\Property;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,10 +25,11 @@ class DatabaseSeeder extends Seeder
 
         // Possibilité de lui passer les paramètres, seulement 
         // que cela écrasera les valeurs déjà défini dans le factory
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+         \App\Models\User::factory()->create([
+             'name' => 'Guy',
+             'email' => 'calebkoffi21@gmail.com',
+                'password' => Hash::make('0000')
+         ]);
          
         //Création de 10 options
         $options = Option::factory(10)->create();
